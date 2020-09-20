@@ -10,7 +10,7 @@ dfpBayLas <- function(staBat    = 1,
                       curParPat = "./out/curPar.RData",
                       savPat  = "./out/savPar.RData",
                       suffix  = "complete-dfp-BayLas",
-                      cores   = 2,
+                      cores   = parallel::detectCores() / 2,
                       staFla   = TRUE,
                       nmcmc   = 100,
                       hlsh    = 1,
@@ -24,6 +24,7 @@ dfpBayLas <- function(staBat    = 1,
                       iniPar){
   
   # Parallel Set-Up
+  print(paste0("Number of Cores = ", cores))
   doParallel::registerDoParallel(cores)
   
   # Progress Bar Initialization
