@@ -41,12 +41,12 @@ if(rem == 0){
 }
 
 # Creates the Paths
-curParPat <- paste0('./out/curPar-', datTyp, "-", regMod, "-", met, ".RData")
-savPat    <- paste0('./out/savPar-', datTyp, "-", regMod, "-", met, ".RData")
-staPat    <- paste0('./out/sta-', datTyp, "-", regMod, "-", met, ".RData")
+curParPat <- paste0('./out/curPar-', datTyp, "-", regMod, "-", met, "-", ite, ".RData")
+savPat    <- paste0('./out/savPar-', datTyp, "-", regMod, "-", met, "-", ite, ".RData")
+staPat    <- paste0('./out/sta-', datTyp, "-", regMod, "-", met, "-", ite, ".RData")
 
 out <- dfpBayLas(staBat    = 1,
-                 endBat    = 100,
+                 endBat    = 500,
                  savCoe    = gr1,
                  curParPat = curParPat,
                  savPat    = savPat,
