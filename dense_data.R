@@ -4,6 +4,7 @@
 
 ### Libraries
 library(doParallel)
+library(fields)
 library(distrEx)
 library(mvtnorm)
 
