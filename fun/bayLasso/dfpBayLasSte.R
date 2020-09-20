@@ -28,7 +28,7 @@ dfpBayLasSte <- function(P,
   for(j in 1:parDiv){
     # Component to work with
     ind     <- P[[j]]
-    cb[ind] <- solve(XX[ind, ind], Xy[ind] - XX[ind, -ind] %*% b[-ind])
+    cb[ind] <- solve(XX[ind, ind], Xy[ind] - XX[ind, -ind] %*% cb[-ind])
   }
   ## Initial Values
   b <- cb

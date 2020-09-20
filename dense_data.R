@@ -4,12 +4,7 @@
 
 ### Libraries
 library(doParallel)
-library(fields)
-library(glmnet)
-library(pracma)
 library(distrEx)
-library(igraph)
-library(statmod)
 library(mvtnorm)
 
 ### Parallel Set-Up
@@ -21,15 +16,15 @@ registerDoParallel(cl)
 set.seed(11082020)
 
 ### Parameter Settings
-n           = 1000        # Observations per Batch or Period
-batNum      = 500         # Number of Batches or Periods
-numCoe      = 50          # Number of Coefficients in Each Division
-numCor      = numCoe      # Number of Correlated Coefficients in Each Division
-numDiv      = 100         # Number of Divisions
-corCoe      = 0.9         # Correlation Coefficient for the predictors
-sigToNoiRat = 10          # Signal To Noise Ratio
-sim         = 100         # Number of simulations
-M           = numCoe      # Maximum number of elements
+n           = 200       # Observations per Batch or Period
+batNum      = 500       # Number of Batches or Periods
+numCoe      = 50        # Number of Coefficients in Each Division
+numCor      = numCoe    # Number of Correlated Coefficients in Each Division
+numDiv      = 100       # Number of Divisions
+corCoe      = 0.9       # Correlation Coefficient for the predictors
+sigToNoiRat = 10        # Signal To Noise Ratio
+sim         = 100       # Number of simulations
+M           = numCoe    # Maximum number of elements
 
 ### Some Computations
 N         = n*batNum                # Total number of observations

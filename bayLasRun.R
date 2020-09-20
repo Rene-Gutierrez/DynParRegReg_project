@@ -2,6 +2,7 @@ source('./fun/bayLasso/dfpBayLas.R')
 source('./fun/bayLasso/dfpBayLasSte.R')
 source('./fun/bayLasso/graPar.R')
 source('./fun/bayLasso/par.R')
+source('./fun/bayLasso/pre.sta.R')
 library(doParallel)
 
 # Problem Type
@@ -15,7 +16,7 @@ per    <- get(load(file = paste0('./dat/per-', ite,'.RData')))
 coe    <- get(load(file = paste0('./dat/coe-',ite,'.RData')))
 gr1    <- get(load(file = paste0('./dat/gr1-',ite,'.RData')))
 rb     <- get(load(file = './dat/rb.RData'))
-M      <- 50
+M      <- 8
 # Initial Random Partition
 p      <- length(coe)
 P      <- list()
@@ -39,8 +40,8 @@ curParPat <- paste0('./out/curPar-', datTyp, "-", regMod, "-", met, ".RData")
 savPat    <- paste0('./out/savPar-', datTyp, "-", regMod, "-", met, ".RData")
 staPat    <- paste0('./out/sta-', datTyp, "-", regMod, "-", met, ".RData")
 
-out <- dfpBayLas(staBat    = 101,
-                 endBat    = 500,
+out <- dfpBayLas(staBat    = 1,
+                 endBat    = 100,
                  savCoe    = gr1,
                  curParPat = curParPat,
                  savPat    = savPat,
