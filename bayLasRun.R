@@ -5,6 +5,11 @@ source('./fun/bayLasso/par.R')
 source('./fun/bayLasso/pre.sta.R')
 library(doParallel)
 
+### Creates a Data Directory (If necessary)
+if(!dir.exists("./out")){
+  dir.create("./out")
+}
+
 # Problem Type
 datTyp    <- "complete"
 regMod    <- "bayLas"
