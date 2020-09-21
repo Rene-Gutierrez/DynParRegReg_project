@@ -21,7 +21,7 @@ per    <- get(load(file = paste0('./dat/per-', ite,'.RData')))
 coe    <- get(load(file = paste0('./dat/coe-',ite,'.RData')))
 gr1    <- get(load(file = paste0('./dat/gr1-',ite,'.RData')))
 rb     <- get(load(file = './dat/rb.RData'))
-M      <- 50
+M      <- 40
 # Initial Random Partition
 p      <- length(coe)
 P      <- list()
@@ -41,9 +41,9 @@ if(rem == 0){
 }
 
 # Creates the Paths
-curParPat <- paste0('./out/curPar-', datTyp, "-", regMod, "-", met, "-", ite, ".RData")
-savPat    <- paste0('./out/savPar-', datTyp, "-", regMod, "-", met, "-", ite, ".RData")
-staPat    <- paste0('./out/sta-', datTyp, "-", regMod, "-", met, "-", ite, ".RData")
+curParPat <- paste0('./out/curPar-', datTyp, "-", regMod, "-", met, "-", ite, "-", M, ".RData")
+savPat    <- paste0('./out/savPar-', datTyp, "-", regMod, "-", met, "-", ite, "-", M, ".RData")
+staPat    <- paste0('./out/sta-', datTyp, "-", regMod, "-", met, "-", ite, "-", M, ".RData")
 
 out <- dfpBayLas(staBat    = 1,
                  endBat    = 500,
