@@ -154,7 +154,7 @@ dfpBayLas <- function(staBat    = 1,
     ## Creates a New Partition Based on the Connected Components
     graParOut      <- graPar(updCor, M)
     P              <- graParOut$partition
-    tre            <- graParOut$treshold
+    treshold       <- graParOut$treshold
     
     # Runtime
     tim <- Sys.time() - beg
