@@ -21,7 +21,7 @@ per    <- get(load(file = paste0('./dat/per-', ite,'.RData')))
 coe    <- get(load(file = paste0('./dat/coe-',ite,'.RData')))
 gr1    <- get(load(file = paste0('./dat/gr1-',ite,'.RData')))
 rb     <- get(load(file = './dat/rb.RData'))
-M      <- 40
+M      <- 50
 # Initial Random Partition
 p      <- length(coe)
 P      <- list()

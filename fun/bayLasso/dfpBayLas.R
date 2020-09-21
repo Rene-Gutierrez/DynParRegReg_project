@@ -107,7 +107,7 @@ dfpBayLas <- function(staBat    = 1,
     P <- curPar$P
   }
   
-  # Perfroms Bayesian Lasso with DFP
+  # Performs Bayesian Lasso with DFP
   for(i in staBat:endBat){
     # Obtains the Data Batch
     ## Regression Matrix
@@ -154,6 +154,7 @@ dfpBayLas <- function(staBat    = 1,
     ## Creates a New Partition Based on the Connected Components
     graParOut      <- graPar(updCor, M)
     P              <- graParOut$partition
+    tre            <- graParOut$treshold
     
     # Runtime
     tim <- Sys.time() - beg
@@ -166,6 +167,7 @@ dfpBayLas <- function(staBat    = 1,
                           ss     = ss,
                           sl     = sl,
                           P      = P,
+                          treshold = treshold,
                           savCoe = savCoe)
     }
     ## Saves to File
@@ -206,5 +208,5 @@ dfpBayLas <- function(staBat    = 1,
     close(pb)
   }
   
-  return(list(ss = ss, sb = sb, sl = sl, st = st, XX = XX, Xy = Xy, yy = yy, sN = sN, P = P))
+  return(list(ss = ss, sb = sb, sl = sl, st = st, XX = XX, Xy = Xy, yy = yy, sN = sN, P = P, treshold = treshold))
 }
