@@ -150,7 +150,7 @@ dfpBayLas <- function(staBat    = 1,
     
     # Partition Update
     ## Computes the Correlation
-    updCor = cov2cor(XX)
+    updCor = (cor(sb) + updCor) / 2
     ## Creates a New Partition Based on the Connected Components
     graParOut      <- graPar(updCor, M)
     P              <- graParOut$partition
