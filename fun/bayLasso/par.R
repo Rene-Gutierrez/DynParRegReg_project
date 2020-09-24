@@ -6,9 +6,9 @@ par <- function(P, M){
   # Creates a New Partition
   nP <- list()
   # Goes through every connected Component Randomly
-  ranOrd <- sample(x = n)
+  # ranOrd <- sample(x = n)
   j      <- 1
-  for(i in ranOrd){
+  for(i in 1:n){
     # Checks if there is a new Component
     if(j > length(nP)){
       # Fills the Component
