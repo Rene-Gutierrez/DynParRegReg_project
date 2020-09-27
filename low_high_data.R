@@ -5,9 +5,8 @@
 ### Libraries
 library(doParallel)
 library(fields)
-library(glmnet)
-library(pracma)
 library(distrEx)
+library(mvtnorm)
 
 ### Parallel Set-Up
 cl <- detectCores(all.tests = FALSE)
