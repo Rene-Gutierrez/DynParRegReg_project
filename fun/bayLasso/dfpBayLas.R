@@ -12,6 +12,7 @@ dfpBayLas <- function(staBat    = 1,
                       suffix    = "complete-dfp-BayLas",
                       cores     = parallel::detectCores() / 2,
                       staFla    = TRUE,
+                      savCurPar = FALSE,
                       nmcmc     = 100,
                       hlsh      = 1,
                       hlsc      = 1,
@@ -187,8 +188,11 @@ dfpBayLas <- function(staBat    = 1,
                    Xy = Xy,
                    yy = yy,
                    sN = sN)
+    
     ## Saves to File
-    save(curPar, file = curParPat)
+    if(savCurPar){
+      save(curPar, file = curParPat)
+    }
     
     # Computes the Relevant Statistics for Evaluation
     ## Checks if the Statistics are required
