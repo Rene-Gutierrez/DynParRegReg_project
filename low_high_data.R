@@ -15,15 +15,15 @@ print(cl)
 registerDoParallel(cl)
 
 ### Parameter Settings
-n           = 200         # Observations per Batch or Period
-batNum      = 500          # Number of Batches or Periods
-numCoe      = 50           # Number of Coeffcients in Each Division
-numCor      = numCoe %/% 2 # Number of Correlated Coefficients in Each Division
-numDiv      = 200          # Number of Divisions
-corCoe      = 0.9          # Correlation Coefficient for the predictors
-sigToNoiRat = 10           # Signal To Noise Ratio
-sim         = 100          # Number of simulations
-M           = numCoe       # Maximum number of elements
+n           = 200       # Observations per Batch or Period
+batNum      = 500       # Number of Batches or Periods
+numCoe      = 50        # Number of Coefficients in Each Division
+numCor      = numCoe    # Number of Correlated Coefficients in Each Division
+numDiv      = 100       # Number of Divisions
+corCoe      = 0.9       # Correlation Coefficient for the predictors
+sigToNoiRat = 10        # Signal To Noise Ratio
+sim         = 100       # Number of simulations
+M           = numCoe    # Maximum number of elements
 
 ### Some Computations
 N         = n*batNum                # Total number of observations
@@ -69,9 +69,9 @@ comX = foreach(i=1:batNum) %dopar%
     for(j in 1:n)
     {
       Xcor        = as.vector(choCorMat %*% matrix(rnorm(numCor*numDiv, 0, 1),nrow = numCor, ncol = numDiv))    # Correlated observations
-      X[j,corInd] = Xcor                                                                                        # Adds correlated observations
-      Xnot        = rnorm(p-numCor*numDiv,0,1)                                                                  # Uncorrelated observations
-      X[j,notInd] = Xnot                                                                                        # Adds the uncorrelated observations
+      X[j, ] = Xcor                                                                                        # Adds correlated observations
+      #Xnot        = rnorm(p-numCor*numDiv,0,1)                                                                  # Uncorrelated observations
+      #X[j,notInd] = Xnot                                                                                        # Adds the uncorrelated observations
     }
     X - matrix(rep(colMeans(X),n), n, p, byrow=T) # Zero Mean Regression Matrix
   }
