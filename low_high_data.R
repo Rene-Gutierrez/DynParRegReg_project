@@ -9,7 +9,7 @@ library(distrEx)
 library(mvtnorm)
 
 ### Parallel Set-Up
-cl <- detectCores(all.tests = FALSE)
+cl <- detectCores(all.tests = FALSE) / 2
 print(cl)
 registerDoParallel(cl)
 
