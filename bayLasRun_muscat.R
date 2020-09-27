@@ -11,7 +11,7 @@ if(!dir.exists("./out")){
 }
 
 # Problem Type
-datTyp    <- "complete"
+datTyp    <- "low-high"
 regMod    <- "bayLas"
 met       <- "dfp"
 
