@@ -38,10 +38,15 @@ selh     = sample(seq(1,p), numCoe)        # Selects high levels
 rb[selh] = rnorm(numCoe, 3, 1)             # Sets Coefficients with high level
 sell     = sample(seq(1,p)[-selh], numCoe) # Selects low levels
 rb[sell] = rnorm(numCoe, 1, 1)             # Sets Coefficients with low level
-sigVar   = max(rb)                         # Signal Teoretical Variance (Case Dependent)
+sigVar   = max(rb)                         # Signal Theoretical Variance (Case Dependent)
 
 ### Varance Magnitude
 rs     = sigVar/sigToNoiRat # Noise Variance
+
+### Creates a Data Directory (If necessary)
+if(!dir.exists("./dat")){
+  dir.create("./dat")
+}
 
 ### Saves Variables Necesary
 save(n,     file='./dat/n.RData')
