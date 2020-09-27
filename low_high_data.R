@@ -86,41 +86,18 @@ comy = foreach(i=1:batNum) %dopar%
     X = comX[[i]]
     X %*% rb + rnorm(n,0,sqrt(rs)) # Predictors Matrix
   }
+
 ### ### Saves the Data
 for(i in 1:batNum)
 {
-  if(i < 10)
-  {
-    ### Save X
-    filNam = paste0('./dat/datX-',prefix,'-00',i,'.RData')  # File Name
-    datObj = comX[[i]]
-    save(datObj,file=filNam)                                # Data Save
-    ### Save y
-    filNam = paste0('./dat/daty-',prefix,'-00',i,'.RData')  # File Name
-    datObj = comy[[i]]
-    save(datObj,file=filNam)                                # Data Save
-  } else {
-    if(i < 100)
-    {
-      ### Save X
-      filNam = paste0('./dat/datX-',prefix,'-0',i,'.RData') # File Name
-      datObj = comX[[i]]
-      save(datObj,file=filNam)                              # Data Save
-      ### Save y
-      filNam = paste0('./dat/daty-',prefix,'-0',i,'.RData')   # File Name
-      datObj = comy[[i]]
-      save(datObj,file=filNam)                                # Data Save
-    } else {
-      ### Save X
-      filNam = paste0('./dat/datX-',prefix,'-',i,'.RData')  # File Name
-      datObj = comX[[i]]
-      save(datObj,file=filNam)                              # Data Save
-      ### Save y
-      filNam = paste0('./dat/daty-',prefix,'-',i,'.RData')  # File Name
-      datObj = comy[[i]]
-      save(datObj,file=filNam)                              # Data Save
-    }
-  }
+  ### Save X
+  filNam = paste0('./dat/datX-',prefix,'-',i,'.RData')  # File Name
+  datObj = comX[[i]]
+  save(datObj, file=filNam)                             # Data Save
+  ### Save y
+  filNam = paste0('./dat/daty-',prefix,'-',i,'.RData')  # File Name
+  datObj = comy[[i]]
+  save(datObj, file=filNam)                             # Data Save
 }
 
 tim = Sys.time() - tim
