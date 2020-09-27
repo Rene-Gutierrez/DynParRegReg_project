@@ -13,6 +13,14 @@ cl <- detectCores(all.tests = FALSE) / 2
 print(cl)
 registerDoParallel(cl)
 
+### Parallel Set-Up
+cl <- detectCores(all.tests = FALSE)/2
+paste0("Number of cores = ", cl)
+registerDoParallel(cl)
+
+### Sets Seed for Replicability
+set.seed(11082020)
+
 ### Parameter Settings
 n           = 200       # Observations per Batch or Period
 batNum      = 500       # Number of Batches or Periods
