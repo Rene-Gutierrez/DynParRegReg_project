@@ -168,6 +168,7 @@ dfpSpiLas <- function(staBat    = 1,
                           sl     = sl,
                           sd     = sd,
                           sg     = sg[, savCoe],
+                          hg     = hg,
                           savCoe = savCoe)
     }
     ## Saves to File
