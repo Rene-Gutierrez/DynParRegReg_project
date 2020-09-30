@@ -10,15 +10,19 @@ dfpBayLasSte <- function(P,
                          hlsc,
                          hlsh,
                          nmcmc){
+  
+  # Gets the number of coefficients
+  p <- length(hb)
+  
   # Batch Samples
   ## Sample for beta
-  sb = matrix(0, nmcmc, p)
+  sb <- matrix(0, nmcmc, p)
   ## Sample for tau
-  st = matrix(0, nmcmc, p)
+  st <- matrix(0, nmcmc, p)
   ## Sample for sigma
-  ss = vector('numeric', nmcmc)
+  ss <- vector('numeric', nmcmc)
   ## Sample for lambda
-  sl = vector('numeric', nmcmc)
+  sl <- vector('numeric', nmcmc)
   
   # Samples Beta and Tau
   ## Gets the Number Of Components in the Regression Coefficients

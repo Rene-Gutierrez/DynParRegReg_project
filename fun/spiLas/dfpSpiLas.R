@@ -1,8 +1,8 @@
-##########################
-### DFP Bayesian Lasso ###
-##########################
+#########################
+### DFP Spike & Lasso ###
+#########################
 
-dfpBayLas <- function(staBat    = 1,
+dfpSpiLas <- function(staBat    = 1,
                       endBat    = staBat,
                       XDatPat   = "./dat/datX-complete-",
                       yDatPat   = "./dat/daty-complete-",
@@ -16,12 +16,14 @@ dfpBayLas <- function(staBat    = 1,
                       nmcmc     = 100,
                       hlsh      = 1,
                       hlsc      = 1,
+                      hds1      = 1,
+                      hds2      = 1,
                       progress  = TRUE,
                       staPar,
                       savBol    = TRUE,
                       savCoe,
                       datPer    = seq(1:endBat),
-                      M,
+                      c,
                       iniPar){
   
   # Parallel Set-Up
@@ -68,14 +70,14 @@ dfpBayLas <- function(staBat    = 1,
   ## Checks if it is the first Batch
   if(staBat == 1){
     # Initializes the Sufficient Statistics
-    XX <- matrix(0, p, p) 
-    Xy <- matrix(0, p, 1)
+    XX <- 0 
+    Xy <- 0
     yy <- 0
     sN <- 0
   } else {
     # Gets the Sufficient Statistics
     curPar <- get(load(file = curParPat))
-    # Sets the Current Sufficient Statitistics
+    # Sets the Current Sufficient Statistics
     XX <- curPar$XX
     Xy <- curPar$Xy
     yy <- curPar$yy
@@ -86,29 +88,25 @@ dfpBayLas <- function(staBat    = 1,
   ## Checks if it is the first Batch
   if(staBat == 1){
     # Initializes the Variables
-    hs <- staPar$hs
-    hl <- staPar$hl
     hb <- staPar$hb
     ht <- staPar$ht
+    hl <- staPar$hl
+    hs <- staPar$hs
+    hd <- staPar$hd
+    hg <- staPar$hg
   } else {
     # Gets the Current Point Estimates
     curPar <- get(load(file = curParPat))
     # Sets the Sufficient Statistics
-    hs <- curPar$hs
-    hl <- curPar$hl
     hb <- curPar$hb
     ht <- curPar$ht
+    hl <- curPar$hl
+    hs <- curPar$hs
+    hd <- curPar$hd
+    hg <- curPar$hg
   }
   
-  # Partition Initialization
-  if(staBat == 1){
-    # Initializes the Partition
-    P <- iniPar
-  } else {
-    P <- curPar$P
-  }
-  
-  # Performs Bayesian Lasso with DFP
+  # Performs Spike and Lasso with DFP
   for(i in staBat:endBat){
     # Obtains the Data Batch
     ## Regression Matrix
@@ -125,41 +123,37 @@ dfpBayLas <- function(staBat    = 1,
     yy <- yy + sum(y^2)
     sN <- sN + length(y)
     
-    # Perfroms Bayesian Lasso with DFP
-    samOut <- dfpBayLasSte(P     = P,
-                           XX    = XX,
+    # Performs Spike & Lasso with DFP
+    samOut <- dfpSpiLasSte(XX    = XX,
                            Xy    = Xy,
                            yy    = yy,
                            sN    = sN,
                            hb    = hb,
-                           hs    = hs,
-                           hl    = hl,
                            ht    = ht,
+                           hl    = hl,
+                           hs    = hs,
+                           hd    = hd,
+                           hg    = hg,
                            hlsh  = hlsh,
                            hlsc  = hlsc,
-                           nmcmc = nmcmc)
+                           hds1  = hds1,
+                           hds2  = hds2,
+                           nmcmc = nmcmc,
+                           c     = c)
     # Obtains the Samples
     sb <- samOut$sb
-    ss <- samOut$ss
     st <- samOut$st
     sl <- samOut$sl
+    ss <- samOut$ss
+    sd <- samOut$sd
+    sg <- samOut$sg
     # Updates the Point Estimates
     hb <- colMeans(sb)
-    hs <- mean(ss)
     ht <- colMeans(st)
     hl <- mean(sl)
-    
-    # Partition Update
-    ## Computes the Correlation
-    if(i == 1){
-      updCor <- cor(sb)
-    } else {
-      updCor <- (cor(sb) + updCor) / 2
-    }
-    ## Creates a New Partition Based on the Connected Components
-    graParOut      <- graPar(updCor, M)
-    P              <- graParOut$partition
-    treshold       <- graParOut$treshold
+    hs <- mean(ss)
+    hd <- mean(sd)
+    hg <- colMeans(sg)
     
     # Runtime
     tim <- Sys.time() - beg
@@ -169,21 +163,27 @@ dfpBayLas <- function(staBat    = 1,
     if(savBol){
       savPar[[i]] <- list(sb     = sb[, savCoe],
                           st     = st[, savCoe],
+                          sl     = sl,
                           ss     = ss,
                           sl     = sl,
-                          P      = P,
-                          treshold = treshold,
+                          sd     = sd,
+                          sg     = sg[, savCoe],
                           savCoe = savCoe)
     }
     ## Saves to File
     save(savPar, file = savPat)
     
+    if(is.na(hs)){
+      break
+    }
+    
     # Saves the Current Point Estimates and Partition
     curPar <- list(hb = hb,
                    ht = ht,
-                   hs = hs,
                    hl = hl,
-                   P  = P,
+                   hs = hs,
+                   hd = hd,
+                   hg = hg,
                    XX = XX,
                    Xy = Xy,
                    yy = yy,
@@ -216,5 +216,5 @@ dfpBayLas <- function(staBat    = 1,
     close(pb)
   }
   
-  return(list(ss = ss, sb = sb, sl = sl, st = st, XX = XX, Xy = Xy, yy = yy, sN = sN, P = P, treshold = treshold))
+  return(list(sb = sb, st = st, sl = sl, ss = ss, sd = sd, sg = sg, XX = XX, Xy = Xy, yy = yy, sN = sN))
 }
