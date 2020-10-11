@@ -11,7 +11,7 @@ if(!dir.exists("./out")){
 }
 
 # Problem Type
-datTyp    <- "low-High"
+datTyp    <- "low-high"
 regMod    <- "bayLas"
 met       <- "dfp"
 
@@ -65,7 +65,7 @@ out <- dfpBayLas(staBat    = 1,
                                   hl = 1))
 
 # Problem Type
-datTyp    <- "low-High"
+datTyp    <- "low-high"
 regMod    <- "bayLas"
 met       <- "dfp"
 
@@ -119,7 +119,7 @@ out <- dfpBayLas(staBat    = 1,
                                   hl = 1))
 
 # Problem Type
-datTyp    <- "low-High"
+datTyp    <- "low-high"
 regMod    <- "bayLas"
 met       <- "dfp"
 
