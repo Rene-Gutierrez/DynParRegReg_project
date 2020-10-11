@@ -15,6 +15,9 @@ datTyp    <- "low-High"
 regMod    <- "bayLas"
 met       <- "dfp"
 
+XDatPat <- paste0("./dat/datX-", datTyp, "-")
+yDatPat <- paste0("./dat/daty-", datTyp, "-")
+
 # Set-Up
 ite    <- 2
 per    <- get(load(file = paste0('./dat/per-', ite,'.RData')))
@@ -66,6 +69,9 @@ datTyp    <- "low-High"
 regMod    <- "bayLas"
 met       <- "dfp"
 
+XDatPat <- paste0("./dat/datX-", datTyp, "-")
+yDatPat <- paste0("./dat/daty-", datTyp, "-")
+
 # Set-Up
 ite    <- 5
 per    <- get(load(file = paste0('./dat/per-', ite,'.RData')))
@@ -116,6 +122,9 @@ out <- dfpBayLas(staBat    = 1,
 datTyp    <- "low-High"
 regMod    <- "bayLas"
 met       <- "dfp"
+
+XDatPat <- paste0("./dat/datX-", datTyp, "-")
+yDatPat <- paste0("./dat/daty-", datTyp, "-")
 
 # Set-Up
 ite    <- 8
