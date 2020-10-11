@@ -26,7 +26,7 @@ gr1    <- get(load(file = paste0('./dat/gr1-',ite,'.RData')))
 gr2    <- get(load(file = paste0('./dat/gr2-',ite,'.RData')))
 gr3    <- get(load(file = paste0('./dat/gr3-',ite,'.RData')))
 rb     <- get(load(file = './dat/rb.RData'))
-M      <- 10
+M      <- 100
 # Initial Random Partition
 p      <- length(coe)
 P      <- list()
@@ -82,7 +82,7 @@ gr1    <- get(load(file = paste0('./dat/gr1-',ite,'.RData')))
 gr2    <- get(load(file = paste0('./dat/gr2-',ite,'.RData')))
 gr3    <- get(load(file = paste0('./dat/gr3-',ite,'.RData')))
 rb     <- get(load(file = './dat/rb.RData'))
-M      <- 10
+M      <- 100
 # Initial Random Partition
 p      <- length(coe)
 P      <- list()
@@ -138,7 +138,7 @@ gr1    <- get(load(file = paste0('./dat/gr1-',ite,'.RData')))
 gr2    <- get(load(file = paste0('./dat/gr2-',ite,'.RData')))
 gr3    <- get(load(file = paste0('./dat/gr3-',ite,'.RData')))
 rb     <- get(load(file = './dat/rb.RData'))
-M      <- 10
+M      <- 100
 # Initial Random Partition
 p      <- length(coe)
 P      <- list()
