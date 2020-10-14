@@ -17,7 +17,7 @@ dfpBayLas <- function(staBat    = 1,
                       hlsh      = 1,
                       hlsc      = 1,
                       progress  = TRUE,
-                      parUpd    = 1,
+                      updPar    = 1,
                       staPar,
                       savBol    = TRUE,
                       savCoe,
@@ -158,8 +158,11 @@ dfpBayLas <- function(staBat    = 1,
       updCor <- (cor(sb) + updCor) / 2
     }
     ## Creates a New Partition Based on the Connected Components
-    graParOut      <- graPar(updCor, M)
-    P              <- graParOut$partition
+    ### Checks if the Partition Needs to be Updated
+    if( i %% updPar){
+      graParOut      <- graPar(updCor, M)
+      P              <- graParOut$partition
+    }
     treshold       <- graParOut$treshold
     
     # Runtime
