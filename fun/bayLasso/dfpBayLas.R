@@ -159,7 +159,7 @@ dfpBayLas <- function(staBat    = 1,
     }
     ## Creates a New Partition Based on the Connected Components
     ### Checks if the Partition Needs to be Updated
-    if( i %% updPar){
+    if( (i %% updPar) == 0){
       graParOut      <- graPar(updCor, M)
       P              <- graParOut$partition
     }
