@@ -108,6 +108,7 @@ dfpBayLas <- function(staBat    = 1,
   } else {
     P <- curPar$P
   }
+  treshold <- 1
   
   # Performs Bayesian Lasso with DFP
   for(i in staBat:endBat){
@@ -162,8 +163,8 @@ dfpBayLas <- function(staBat    = 1,
     if( (i %% updPar) == 0){
       graParOut      <- graPar(updCor, M)
       P              <- graParOut$partition
+      treshold       <- graParOut$treshold
     }
-    treshold       <- graParOut$treshold
     
     # Runtime
     tim <- Sys.time() - beg
